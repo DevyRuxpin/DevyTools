@@ -1,3 +1,21 @@
+
+# DevyTools ![Python](https://img.shields.io/badge/Python-3.9-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg)
+
+Repository for Self-Made Tools
+
+## Table of Contents
+- [About](#about)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## About
+DevyTools is a collection of self-made tools designed to enhance productivity and streamline various development tasks. This repository includes a range of tools, each aimed at solving specific problems or improving workflows.
+
+## Text Image
+```
 ....................................................................................................
 .....................................................%.#............................................
 ....................................................:@*:=...........................................
@@ -33,21 +51,7 @@
 .......................................-:...:***.......:***..-......................................
 .........................................=******....-******..-......................................
 ..............................................:..........::.........................................
-
-# DevyTools ![Python](https://img.shields.io/badge/Python-3.9-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg)
-
-Repository for Self-Made Tools
-
-## Table of Contents
-- [About](#about)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
-## About
-DevyTools is a collection of self-made tools designed to enhance productivity and streamline various development tasks. This repository includes a range of tools, each aimed at solving specific problems or improving workflows.
+```
 
 ## Features
 - **SQL Performance Monitoring Tool**
@@ -73,13 +77,16 @@ DevyTools is a collection of self-made tools designed to enhance productivity an
 
 ## Usage
 To start the SQL Performance Monitoring Tool, run the following command:
+```
 python src/main.py
+```
 
-Code
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
+```
 
+You can copy and paste this content into your README file to ensure the text image displays correctly.
 
