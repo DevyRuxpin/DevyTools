@@ -88,5 +88,4 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 This project is licensed under the MIT License. See the LICENSE file for details.
 ```
 
-You can copy and paste this content into your README file to ensure the text image displays correctly.
 
