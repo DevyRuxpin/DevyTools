@@ -1,8 +1,9 @@
 database:
+  type: postgresql
   host: localhost
   port: 5001
   user: postgres
-  password: ""  # Leave empty for no password
+  password: ""
   database_name: monitoring_db
 
 alerting:
@@ -12,7 +13,5 @@ alerting:
     query_response_time: 2.0
 
 visualization:
-  output_format: png
   report_interval: daily
   show_trends: true
-

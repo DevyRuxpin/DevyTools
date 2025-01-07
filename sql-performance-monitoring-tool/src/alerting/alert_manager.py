@@ -1,15 +1,21 @@
 class AlertManager:
-    def __init__(self, thresholds):
-        self.thresholds = thresholds
+    def __init__(self, config):
+        self.config = config
 
-    def check_alerts(self, metrics):
+    def check_thresholds(self, metrics):
         alerts = []
-        for metric in metrics:
-            if metric['response_time'] > self.thresholds['query_response_time']:
-                alerts.append(f"Alert: {metric['query_name']} has exceeded the response time threshold with value {metric['response_time']} ms.")
-        return alerts
+        thresholds = self.config['thresholds']
 
-    def send_alert(self, alerts):
-        # Here you would implement the logic to send the alert, e.g., email, SMS, etc.
-        for alert in alerts:
-            print(alert)
+        # Check CPU usage
+        if metrics['cpu_usage'] > thresholds['cpu_usage']:
+            alerts.append({'message': 'CPU usage is high', 'severity': 'high'})
+
+        # Check memory usage
+        if metrics['memory_usage'] > thresholds['memory_usage']:
+            alerts.append({'message': 'Memory usage is high', 'severity': 'high'})
+
+        # Check query response time
+        if metrics['query_response_time'] > thresholds['query_response_time']:
+            alerts.append({'message': 'Query response time is high', 'severity': 'high'})
+
+        return alerts

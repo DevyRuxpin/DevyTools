@@ -1,29 +1,47 @@
-import time
-from collectors.sql_collector import SqlCollector
-from visualizers.performance_visualizer import PerformanceVisualizer
-from alerting.alert_manager import AlertManager
-from utils.db_utils import connect_to_db, load_config
+from fastapi import FastAPI, Request, Form, HTTPException
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from sqlalchemy.orm import Session
+from src.collectors.sql_collector import SQLCollector
+from src.app import SessionLocal  # Correct import path
+from src.templates import templates
 
-def main():
-    config = load_config()
-    db_connection = connect_to_db(config['database'])
-    sql_collector = SqlCollector(db_connection)
-    performance_visualizer = PerformanceVisualizer()
-    alert_manager = AlertManager(config['alerting']['thresholds'])
+app = FastAPI()
 
-    while True:
-        query = input("Enter the SQL query to run: ")
-        if query.lower() == 'exit':
-            break
+# Mount the static files directory
+app.mount("/static", StaticFiles(directory="src/styles"), name="static")
 
-        metrics = sql_collector.collect_metrics(query)
-        performance_visualizer.visualize_metrics(metrics)
+# Set up Jinja2 templates
+templates = Jinja2Templates(directory="src/templates")
 
-        alerts = alert_manager.check_alerts(metrics)
-        if alerts:
-            alert_manager.send_alert(alerts)
+config = load_config()
+collector = SQLCollector(config)
+alert_manager = AlertManager(config)
 
-        time.sleep(60)  # Monitor every minute
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
-if __name__ == "__main__":
-    main()
+@app.post("/execute-query", response_class=HTMLResponse)
+async def execute_query(request: Request, sql_query: str = Form(...)):
+    try:
+        # Create a new session instance
+        session: Session = SessionLocal()  # Create a session instance
+        result = session.execute(sql_query)
+        data = result.fetchall()
+        session.close()  # Close the session
+        return templates.TemplateResponse("query_result.html", {"request": request, "data": data})
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/dashboard", response_class=HTMLResponse)
+async def read_dashboard(request: Request):
+    return templates.TemplateResponse("dashboard.html", {"request": request})
+
+@app.get("/metrics", response_class=HTMLResponse)
+async def get_metrics(request: Request):
+    try:
+        # Your existing code for metrics
+        pass
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

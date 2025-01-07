@@ -1,87 +1,6 @@
-
-# DevyTools ![Python](https://img.shields.io/badge/Python-3.9-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg)
-
-Repository for Self-Made Tools
-
-## Table of Contents
-- [About](#about)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
-## About
-DevyTools is a collection of self-made tools designed to enhance productivity and streamline various development tasks. This repository includes a range of tools, each aimed at solving specific problems or improving workflows.
-
-## Anubis Monitoring SQL
-```
-....................................................................................................
-.....................................................%.#............................................
-....................................................:@*:=...........................................
-....................................................%@@:-...........................................
-....................................................@@@#=...........................................
-..............................................%@@@##@@@@%%%:........................................
-...............................................=*%@@@@@%%%%%#.......................................
-.......................................+..........+%@@%%%%%%%#......................................
-.......................................--....:**-#%%*#%%+=**#%:.....................................
-........................................-...-****=%%**%%=****##.....................................
-........................................-...:*****==*#==*****#%.....................................
-........................................-...-**+**********-+**:.....................................
-........................................-...***::********=.=**......................................
-........................................-...***..********..-**......................................
-........................................-..:**-..+*****+=..:**......................................
-........................................-.:**+...:*+*+*++:.:**......................................
-........................................-.***.....=-------.:**:.....................................
-........................................-+**.....=-------=.:**:.....................................
-.......................................=**=......:--------:.**......................................
-.......................................*#:........--------:.**......................................
-........................................-.........---------+**......................................
-........................................-.........:--------.:+......................................
-........................................-........ .:-------:-:......................................
-........................................-.......:   .------.-.......................................
-........................................-............ ...--=........................................
-........................................-.......****..=***+#........................................
-........................................-.......***-...******.......................................
-........................................-......:***:...=***+-.......................................
-........................................-......****....=***+-.......................................
-........................................-.....:***:.....***+-:......................................
-........................................-.....=**=......***---......................................
-........................................-.....*#+.......=*+..:......................................
-.......................................-:...:***.......:***..-......................................
-.........................................=******....-******..-......................................
-..............................................:..........::.........................................
-```
-
-
 # SQL Performance Monitoring Tool
 
-This project is a SQL Performance Monitoring Tool that collects, visualizes, and alerts users about the performance of SQL databases and queries.
-
-## Features
-
-- Collects performance metrics from SQL databases.
-- Visualizes performance data with graphical representations.
-- Sends alerts based on predefined thresholds for performance metrics.
-
-## Project Structure
-
-```
-sql-performance-monitoring-tool
-├── src
-│   ├── main.py                  # Entry point of the application
-│   ├── collectors
-│   │   └── sql_collector.py     # Collects SQL performance metrics
-│   ├── visualizers
-│   │   └── performance_visualizer.py # Visualizes performance data
-│   ├── alerting
-│   │   └── alert_manager.py      # Manages alerting mechanisms
-│   └── utils
-│       └── db_utils.py          # Utility functions for database operations
-├── requirements.txt              # Project dependencies
-├── config.yaml                   # Configuration settings
-└── README.md                     # Project documentation
-```
+This project is a SQL Performance Monitoring Tool that collects and alerts users about the performance of SQL databases and queries.
 
 ## Installation
 
@@ -102,13 +21,47 @@ sql-performance-monitoring-tool
 
 To start the monitoring tool, run the following command:
 ```
-python src/main.py
+uvicorn src.main:app --reload
 ```
 
-## Contributing
+## Project Structure
 
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+```
+sql-performance-monitoring-tool/
+├── .vscode/
+│   └── settings.json
+├── config.yaml
+├── package.json
+├── README.md
+├── requirements.txt
+├── src/
+│   ├── alerting/
+│   │   └── alert_manager.py
+│   ├── collectors/
+│   │   └── sql_collector.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   └── models.py
+│   ├── scripts/
+│   │   └── bokeh_app.py
+│   ├── styles/
+│   │   ├── tailwind.css
+│   │   └── styles.css
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── dashboard.html
+│   │   ├── index.html
+│   │   └── metrics.html
+│   ├── utils/
+│   │   ├── db_utils.py
+│   │   └── url_utils.py
+│   ├── visualizers/
+│   │   └── performance_visualizer.py
+│   ├── app.py
+│   ├── commands.py
+│   ├── config.py
+│   ├── db.py
+│   ├── main.py
+│   └── metrics.py
+└── tailwind.config.js
+```
