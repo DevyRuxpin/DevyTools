@@ -60,32 +60,33 @@ DevyTools is a collection of self-made tools designed to enhance productivity an
   - Sends alerts based on predefined thresholds for performance metrics.
   - Allows users to enter SQL queries via terminal, connecting to the database of their choice.
   - Customizable testing metrics for specific performance needs.
+- **Forex Converter App**
+  - Converts currencies based on real-time exchange rates.
+  - Supports multiple currencies.
 
 ## Installation
 1. Clone the repository:
-    ```
-    git clone https://github.com/yourusername/DevyTools.git
-    cd DevyTools
-    ```
+   
+   git clone https://github.com/yourusername/DevyTools.git
+   cd DevyTools
 
-2. Install the required dependencies:
-    ```
-    pip install -r requirements.txt
-    ```
+2.Install the required dependencies:
+   
+   pip install -r requirements.txt
 
-3. Configure the `config.yaml` file with your database connection details, alert thresholds, and any additional custom metrics.
+3.Configure the config.yaml file with your database connection details.
 
-## Usage
-To start the SQL Performance Monitoring Tool, run the following command:
-```
+
+##Usage
+1. To start the SQL Performance Monitoring Tool, run the following:
 python src/main.py
-```
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-```
+2. To start the Forex Converter APP, run the following:
+python forex_converter.py
 
 
+##Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
+
+##License
+This project is licensed under the MIT License.
