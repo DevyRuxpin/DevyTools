@@ -1,11 +1,10 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
+from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from .models import Base, QueryMetric, Alert
-from .collectors.sql_collector import SQLCollector
 from .visualizers.performance_visualizer import PerformanceVisualizer
 from .alerting.alert_manager import AlertManager
+from .collectors.sql_collector import SQLCollector
 import ruamel.yaml
 import os
 import logging
@@ -16,10 +15,10 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI()
+app = Flask(__name__)
 
 # Load configuration
-with open('../config.yaml', 'r') as file:
+with open('config.yaml', 'r') as file:  # Corrected path to config.yaml
     yaml = ruamel.yaml.YAML()
     config = yaml.load(file)
 
@@ -44,7 +43,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 # Initialize other components
 collector = SQLCollector(engine)
 visualizer = PerformanceVisualizer()
-alert_manager = AlertManager()
+alert_manager = AlertManager(config)  # Pass the config argument
 
 # Create database tables
 Base.metadata.create_all(bind=engine)
